@@ -1,0 +1,29 @@
+{
+  "name": "rethinkly",
+  "version": "1.0.0",
+  "description": "a library to make easier the operation handling in rethinkdb",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clucasalcantara/rethinkdb-js.git"
+  },
+  "keywords": [
+    "rethinkdb",
+    "wrapper",
+    "library"
+  ],
+  "author": "Caio Alcantara",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clucasalcantara/rethinkdb-js/issues"
+  },
+  "homepage": "https://github.com/clucasalcantara/rethinkdb-js#readme",
+  "dependencies": {
+    "cross-env": "^5.2.0",
+    "dotenv": "^7.0.0",
+    "rethinkdb": "^2.3.3"
+  }
+}
