@@ -49,13 +49,11 @@ const instance = rethinkly(dbConfig);
 
 #### Example
 ```javascript
-const rethinkly = require('rethinkly')
+import rethinkly, { retrieveData } from 'rethinkly'
 const instance = rethinkly(dbConfig)
-// Select your database
-instance.selectDB('rethinkly');
 
 // Get your data as list
-const users = instance.retrieveData('users')
+const users = retrieveData(instance, 'users')
 /** output 
 [
     {
@@ -71,12 +69,12 @@ const users = instance.retrieveData('users')
 /**
 * Match your results using where clause
 */
-const users = instance.retrieveData('users', { role: '99bd6af9-922e-4787-a97d-3d915f60e65b' })
+const users = retrieveData(instance, 'users', { role: '99bd6af9-922e-4787-a97d-3d915f60e65b' })
 /**
 
 * Implicit byId
 */
-const users = instance.retrieveData('users', 'a3bbd8e3-b53f-4ecd-bab9-6c65cfcf931b')
+const users = retrieveData(instance, 'users', 'a3bbd8e3-b53f-4ecd-bab9-6c65cfcf931b')
 
 /** output 
 [
