@@ -1,5 +1,6 @@
 # Rethinkly 🚀
-👷 Work in progress 🚧
+#### 👷 Work in progress 🚧
+
 A carefuly created set of bindings to present an easy way to retrieve data from RethinkDB instances. 
 
 Rethinkly is a collection of methods to make more literal and legible gathering data from rethink into JavaScript applications. Supports node and browser.
@@ -13,7 +14,7 @@ Rethink. Again.
 ```
 
 #### Available methods:
-- selectDB
+- rethinkly
 - retrieveData
 
 #### Usage
@@ -29,19 +30,6 @@ const dbConfig = {
 const instance = rethinkly(dbConfig);
 ```
 ### API
-
-
-##### `selectDB`
-- Set a database as the current _active db_. Every query will be running in this table automagically.
-
-#### Example
-```javascript
-const rethinkly = require('rethinkly')
-
-const instance = rethinkly(dbConfig)
-// Select your database
-instance.selectDB('users');
-```
 
 ##### `retrieveData`
 - Method to get a list or a specific value from a table.
