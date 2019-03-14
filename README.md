@@ -5,6 +5,7 @@
 </p>
 
 # Rethinkly 🚀
+[![CircleCI](https://circleci.com/gh/clucasalcantara/rethinkly/tree/master.svg?style=svg)](https://circleci.com/gh/clucasalcantara/rethinkly/tree/master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/171166ddf3def955c383/maintainability)](https://codeclimate.com/github/clucasalcantara/rethinkly/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/171166ddf3def955c383/test_coverage)](https://codeclimate.com/github/clucasalcantara/rethinkly/test_coverage)
 #### 👷 Work in progress 🚧
 
