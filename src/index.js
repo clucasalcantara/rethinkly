@@ -1,6 +1,6 @@
 const connect = require('./connection')
-const retrieveData = require('./retrieve-data')
+const { retrieveData, insertData } = require('./transactions')
 
 export default async dbConfig => connect(dbConfig)
 
-export { retrieveData }
+export { insertData, retrieveData }
