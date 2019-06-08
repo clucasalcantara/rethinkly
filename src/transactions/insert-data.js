@@ -9,7 +9,6 @@ const rethinkdb = require('rethinkdb')
  * Grab data from database
  * @param {Object} connection
  * @param {String} tableName
- * @param {String} id?
  * @returns {Array||Object} results || result
  */
 module.exports = async (connection, tableName, data) =>

@@ -1,5 +1,5 @@
 /**
- * Data module
+ * Retrieve data module
  * @memberof rethinkly
  */
 const rethinkdb = require('rethinkdb')
