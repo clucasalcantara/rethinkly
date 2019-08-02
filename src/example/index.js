@@ -1,4 +1,4 @@
-import Rethinkly, { retrieveData } from '..'
+import Rethinkly, { transactions } from '..'
 
 const test = async () => {
   const connection = await Rethinkly.connect({
@@ -7,8 +7,7 @@ const test = async () => {
     db: 'rethinkly_example',
   })
 
-  const data = await retrieveData(connection, 'simple_table')
-
+  const data = await transactions.data.retrieveData(connection, 'simple_table')
   console.log(data)
 }
 

@@ -1,7 +1,16 @@
+/**
+ * Rethinkly example bootstraper
+ * @memberof rethinkly
+ * Made to show a few usage of rethink and also to create the teste suite database
+ */
 import logger from 'hoopa-logger'
-import Rethinkly, { insertData } from '../..'
-import { createDatabase, createTable } from '../../transactions/creation'
+import Rethinkly, { transactions } from '../..'
 
+/**
+ * Run
+ * Runs the bootstraper
+ * @returns void
+ */
 const run = async () => {
   const db = 'rethinkly_example'
   const connection = await Rethinkly.connect({
@@ -10,9 +19,9 @@ const run = async () => {
     db,
   })
 
-  await createDatabase(connection, db)
-  await createTable(connection, 'simple_table')
-  await insertData(connection, 'simple_table', [
+  await transactions.database.create(connection, db)
+  await transactions.table.create(connection, 'simple_table')
+  await transactions.data.insertData(connection, 'simple_table', [
     { data: 'Dummy Jhon' },
     { data: 'Dummy Jeff' },
     { data: 'Dummy Albert' },
@@ -25,6 +34,10 @@ const run = async () => {
     { data: 'Dummy Jah' },
   ])
   logger.info(`Bootstrap ended.`)
+
+  /* eslint-disable unicorn/no-process-exit */
+  process.exit(0)
 }
 
+/* eslint-enable */
 run()
