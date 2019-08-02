@@ -13,17 +13,16 @@ const run = async () => {
   await createDatabase(connection, db)
   await createTable(connection, 'simple_table')
   await insertData(connection, 'simple_table', [
-    { data: 'Dummy' },
-    { data: 'Dummy' },
-    { data: 'Dummy' },
-    { data: 'Dummy' },
-    { data: 'Dummy' },
-    { data: 'Dummy' },
-    { data: 'Dummy' },
-    { data: 'Dummy' },
-    { data: 'Dummy' },
-    { data: 'Dummy' },
-    { data: 'Dummy' },
+    { data: 'Dummy Jhon' },
+    { data: 'Dummy Jeff' },
+    { data: 'Dummy Albert' },
+    { data: 'Dummy Crazy' },
+    { data: 'Dummy Logan' },
+    { data: 'Dummy Links' },
+    { data: 'Dummy Joao' },
+    { data: 'Dummy Joseph' },
+    { data: 'Dummy Jizz' },
+    { data: 'Dummy Jah' },
   ])
   logger.info(`Bootstrap ended.`)
 }

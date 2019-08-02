@@ -4,14 +4,12 @@ const test = async () => {
   const connection = await Rethinkly.connect({
     host: 'localhost',
     port: 28015,
-    db: 'brian',
+    db: 'rethinkly_example',
   })
 
-  const data = await retrieveData(connection, 'config')
-  const data2 = await retrieveData(connection, 'people')
+  const data = await retrieveData(connection, 'simple_table')
 
   console.log(data)
-  console.log(data2)
 }
 
 test()
