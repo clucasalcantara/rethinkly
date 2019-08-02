@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/transactions/index.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;AAAA;;AACA","sourcesContent":["import retrieveData from './retrieve-data'\nimport insertData from './insert-data'\n\nexport { retrieveData, insertData }\n"],"file":"index.js"}
