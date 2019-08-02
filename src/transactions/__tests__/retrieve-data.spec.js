@@ -7,7 +7,7 @@ import retrieveData from '../retrieve-data'
 
 const getConnection = async () =>
   createLink({
-    host: 'localhost',
+    host: '172.18.0.2',
     port: 28015,
     db: 'retrieve_example',
   })

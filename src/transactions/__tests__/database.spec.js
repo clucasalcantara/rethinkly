@@ -4,7 +4,7 @@ import { createDatabase, dropDatabase } from '../database'
 
 const getConnection = async () =>
   createLink({
-    host: 'localhost',
+    host: '172.18.0.2',
     port: 28015,
     db: 'db_example',
   })
