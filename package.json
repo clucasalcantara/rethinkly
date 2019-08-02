@@ -1,12 +1,14 @@
 {
   "name": "rethinkly",
-  "version": "1.0.3",
+  "version": "1.0.4-0",
   "description": "a library to make easier the operation handling in rethinkdb",
   "main": "dist/index.js",
   "scripts": {
     "example-bootstrap": "babel-node src/example/bootstrap/",
     "run-example": "babel-node src/example",
     "build": "babel src/ --out-dir dist/ --source-maps --copy-files",
+    "release": "npm version prerelease",
+    "publish": "npm publish",
     "test": "ENV=mock ava",
     "lint": "xo --quiet",
     "lint:format": "xo --quiet --write 'src/**/*.js'",
