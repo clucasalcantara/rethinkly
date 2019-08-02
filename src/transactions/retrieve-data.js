@@ -2,7 +2,7 @@
  * Retrieve data module
  * @memberof rethinkly
  */
-const rethinkdb = require('rethinkdb')
+import rethinkdb from 'rethinkdb'
 
 /**
  * ProcessResults
@@ -21,7 +21,7 @@ const processResults = results => results
  * @param {String} id?
  * @returns {Array||Object} results || result
  */
-module.exports = async (connection, tableName, id = null) => {
+export default async (connection, tableName, id = null) => {
   if (!id) {
     return rethinkdb
       .table(tableName)

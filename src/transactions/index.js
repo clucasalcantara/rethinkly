@@ -1,7 +1,4 @@
-const retrieveData = require('./retrieve-data')
-const insertData = require('./insert-data')
+import retrieveData from './retrieve-data'
+import insertData from './insert-data'
 
-module.exports = {
-  retrieveData,
-  insertData,
-}
+export { retrieveData, insertData }

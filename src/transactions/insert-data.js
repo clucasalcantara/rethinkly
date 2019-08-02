@@ -2,7 +2,7 @@
  * Insert data module
  * @memberof rethinkly
  */
-const rethinkdb = require('rethinkdb')
+import rethinkdb from 'rethinkdb'
 
 /**
  * Insert data
@@ -11,7 +11,7 @@ const rethinkdb = require('rethinkdb')
  * @param {String} tableName
  * @returns {Array||Object} results || result
  */
-module.exports = async (connection, tableName, data) =>
+export default async (connection, tableName, data) =>
   rethinkdb
     .table(tableName)
     .insert(data)
