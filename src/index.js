@@ -1,6 +1,8 @@
-const connect = require('./connection')
-const { retrieveData, insertData } = require('./transactions')
+import createLink from './connection'
+import { retrieveData, insertData } from './transactions'
 
-export default async dbConfig => connect(dbConfig)
+export default {
+  connect: dbConfig => createLink(dbConfig),
+}
 
 export { insertData, retrieveData }
