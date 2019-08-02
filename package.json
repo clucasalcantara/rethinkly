@@ -7,7 +7,7 @@
     "example-bootstrap": "babel-node src/example/bootstrap/",
     "run-example": "babel-node src/example",
     "build": "babel src/ --out-dir dist/ --source-maps --copy-files",
-    "test": "ENV=mock ava --verbose",
+    "test": "ENV=mock ava",
     "lint": "xo --quiet",
     "lint:format": "xo --quiet --write 'src/**/*.js'",
     "precommit": "lint-staged"
