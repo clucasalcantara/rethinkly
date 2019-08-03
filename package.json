@@ -7,7 +7,6 @@
     "example-bootstrap": "babel-node src/example/bootstrap/",
     "run-example": "babel-node src/example",
     "build": "babel src/ --out-dir dist/ --source-maps --copy-files",
-    "show-version": "echo $npm_package_version",
     "pre-release": "npm version prerelease",
     "publish": "npm publish",
     "test:ci": "ENV=mock ava",
@@ -79,6 +78,11 @@
       "prettier --semi false --single-quote --trailing-comma --write",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn test"
+    }
   },
   "ava": {
     "files": [
