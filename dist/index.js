@@ -3,7 +3,43 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 })
-exports.transactions = exports['default'] = void 0
+Object.defineProperty(exports, 'createLink', {
+  enumerable: true,
+  get: function get() {
+    return _connection['default']
+  },
+})
+Object.defineProperty(exports, 'retrieveData', {
+  enumerable: true,
+  get: function get() {
+    return _transactions.retrieveData
+  },
+})
+Object.defineProperty(exports, 'insertData', {
+  enumerable: true,
+  get: function get() {
+    return _transactions.insertData
+  },
+})
+Object.defineProperty(exports, 'createDatabase', {
+  enumerable: true,
+  get: function get() {
+    return _database.createDatabase
+  },
+})
+Object.defineProperty(exports, 'dropDatabase', {
+  enumerable: true,
+  get: function get() {
+    return _database.dropDatabase
+  },
+})
+Object.defineProperty(exports, 'createTable', {
+  enumerable: true,
+  get: function get() {
+    return _table.createTable
+  },
+})
+exports['default'] = void 0
 
 var _connection = _interopRequireDefault(require('./connection'))
 
@@ -17,24 +53,9 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj }
 }
 
-var _default = {
-  connect: function connect(dbConfig) {
-    return (0, _connection['default'])(dbConfig)
-  },
+var _default = function _default(dbConfig) {
+  return (0, _connection['default'])(dbConfig)
 }
+
 exports['default'] = _default
-var transactions = {
-  database: {
-    create: _database.createDatabase,
-    drop: _database.dropDatabase,
-  },
-  table: {
-    create: _table.createTable,
-  },
-  data: {
-    retrieveData: _transactions.retrieveData,
-    insertData: _transactions.insertData,
-  },
-}
-exports.transactions = transactions
 //# sourceMappingURL=index.js.map

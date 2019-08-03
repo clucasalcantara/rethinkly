@@ -45,7 +45,7 @@ function _asyncToGenerator(fn) {
 
 /**
  * Create Link
- * Create a rethinkdb instance bridge
+ * creates a rethinkdb instance bridge,
  * @param {Object} dbConfig
  * @returns {Object} connection
  */
