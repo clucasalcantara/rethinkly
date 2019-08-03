@@ -14,8 +14,8 @@ import Rethinkly, { transactions } from '../..'
 const run = async () => {
   const db = 'rethinkly_example'
   const connection = await Rethinkly.connect({
-    host: 'localhost',
-    port: 28015,
+    host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
+    port: '28015',
     db,
   })
 

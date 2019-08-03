@@ -10,7 +10,8 @@
     "show-version": "echo $npm_package_version",
     "pre-release": "npm version prerelease",
     "publish": "npm publish",
-    "test": "ENV=mock ava",
+    "test:ci": "ENV=mock ava",
+    "test": "ava --verbose",
     "lint": "xo --quiet",
     "lint:format": "xo --quiet --write 'src/**/*.js'",
     "precommit": "lint-staged"

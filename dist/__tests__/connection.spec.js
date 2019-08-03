@@ -54,8 +54,8 @@ function _asyncToGenerator(fn) {
               case 0:
                 _context.next = 2
                 return (0, _connection['default'])({
-                  host: 'localhost',
-                  port: 28015,
+                  host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
+                  port: '28015',
                   db: 'rethinkly_example',
                 })
 

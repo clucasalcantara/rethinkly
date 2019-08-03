@@ -6,8 +6,8 @@ import insertData from '../insert-data'
 
 const getConnection = async () =>
   createLink({
-    host: '172.18.0.2',
-    port: 28015,
+    host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
+    port: '28015',
     db: 'insertion_example',
   })
 

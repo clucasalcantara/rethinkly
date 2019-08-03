@@ -5,8 +5,8 @@ import { createTable } from '../table'
 
 const getConnection = async () =>
   createLink({
-    host: '172.18.0.2',
-    port: 28015,
+    host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
+    port: '28015',
     db: 'table_example',
   })
 

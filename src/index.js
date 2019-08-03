@@ -3,22 +3,17 @@ import { retrieveData, insertData } from './transactions'
 import { createDatabase, dropDatabase } from './transactions/database'
 import { createTable } from './transactions/table'
 
-export default {
-  connect: dbConfig => createLink(dbConfig),
-}
+export default dbConfig => createLink(dbConfig)
 
-const transactions = {
-  database: {
-    create: createDatabase,
-    drop: dropDatabase,
-  },
-  table: {
-    create: createTable,
-  },
-  data: {
-    retrieveData,
-    insertData,
-  },
+export {
+  // Data
+  retrieveData,
+  insertData,
+  // Database
+  createDatabase,
+  dropDatabase,
+  // Table
+  createTable,
+  // Connection
+  createLink,
 }
-
-export { transactions }
