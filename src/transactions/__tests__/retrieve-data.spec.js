@@ -18,10 +18,12 @@ test('[transactions]: should retrieve a value properly', async t => {
   if (dbCreated) {
     const tableCreated = await createTable(conn, 'retrieve_example')
     if (tableCreated) {
-      const result = await insertData(conn, 'retrieve_example', { teste: 'pass' })
+      const result = await insertData(conn, 'retrieve_example', [{ teste: 'pass' }, { teste: 'fail' }])
       if (result.generated_keys) {
         const data = await retrieveData(conn, 'retrieve_example')
-        if (data) t.pass('Retrieve data with success')
+        const filtered = await retrieveData(conn, 'retrieve_example', { teste: 'pass' })
+
+        if (data.length === 2 && filtered.length === 1) t.pass('Retrieve data with success')
       }
     }
   }
