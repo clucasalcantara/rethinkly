@@ -2,9 +2,6 @@
  * Rethinkly entrypoint
  * Env loading...
  */
-
-const dotenv = require('dotenv')
-
-dotenv.load()
+require('@babel/polyfill')
 
 module.exports = require('./src')
