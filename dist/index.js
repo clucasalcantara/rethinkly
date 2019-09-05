@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -48,8 +50,6 @@ var _transactions = require("./transactions");
 var _database = require("./transactions/database");
 
 var _table = require("./transactions/table");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _default = function _default(dbConfig) {
   return (0, _connection["default"])(dbConfig);
