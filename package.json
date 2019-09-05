@@ -1,6 +1,6 @@
 {
   "name": "rethinkly",
-  "version": "1.0.4-5",
+  "version": "1.0.4-6",
   "description": "a library to make easier the operation handling in rethinkdb",
   "main": "dist/index.js",
   "scripts": {
