@@ -32,6 +32,7 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/polyfill": "^7.4.4",
     "ava": "^1.3.1",
+    "babel-node": "^0.0.1-security",
     "rethinkdb": "^2.3.3"
   },
   "devDependencies": {

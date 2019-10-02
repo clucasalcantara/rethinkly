@@ -1,24 +1,24 @@
 import test from 'ava'
-import Rethinkly, { retrieveData, insertData, createDatabase, dropDatabase, createTable, createLink } from '..'
+import Rethinkly, { data, table, database, createLink } from '../../dist'
 
 test('[core structure]: should have a retrieve data function', t => {
-  if (retrieveData) t.pass()
+  if (data.get) t.pass()
 })
 
 test('[core structure]: should have a insertData function', t => {
-  if (insertData) t.pass()
+  if (data.insert) t.pass()
 })
 
 test('[core structure]: should have a createDatabase function', t => {
-  if (createDatabase) t.pass()
+  if (database.create) t.pass()
 })
 
 test('[core structure]: should have a dropDatabase function', t => {
-  if (dropDatabase) t.pass()
+  if (database.drop) t.pass()
 })
 
 test('[core structure]: should have a createTable function', t => {
-  if (createTable) t.pass()
+  if (table.create) t.pass()
 })
 
 test('[core structure]: should have a createLink function', t => {

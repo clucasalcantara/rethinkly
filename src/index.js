@@ -5,15 +5,21 @@ import { createTable } from './transactions/table'
 
 export default dbConfig => createLink(dbConfig)
 
-export {
+module.exports = {
   // Data
-  retrieveData,
-  insertData,
+  data: {
+    get: retrieveData,
+    insert: insertData,
+  },
   // Database
-  createDatabase,
-  dropDatabase,
+  database: {
+    create: createDatabase,
+    drop: dropDatabase,
+  },
   // Table
-  createTable,
+  table: {
+    create: createTable,
+  },
   // Connection
   createLink,
 }

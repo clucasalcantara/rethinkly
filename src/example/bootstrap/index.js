@@ -4,7 +4,7 @@
  * Made to show a few usage of rethink and also to create the teste suite database
  */
 import logger from 'hoopa-logger'
-import Rethinkly, { transactions } from '../..'
+import { data, table, database, createLink } from '../../../dist'
 
 /**
  * Run
@@ -13,15 +13,15 @@ import Rethinkly, { transactions } from '../..'
  */
 const run = async () => {
   const db = 'rethinkly_example'
-  const connection = await Rethinkly.connect({
+  const connection = await createLink({
     host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
     port: '28015',
     db,
   })
 
-  await transactions.database.create(connection, db)
-  await transactions.table.create(connection, 'simple_table')
-  await transactions.data.insertData(connection, 'simple_table', [
+  await database.create(connection, db)
+  await table.create(connection, 'simple_table')
+  await data.insert(connection, 'simple_table', [
     { data: 'Dummy Jhon' },
     { data: 'Dummy Jeff' },
     { data: 'Dummy Albert' },

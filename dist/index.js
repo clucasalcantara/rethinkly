@@ -5,42 +5,6 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "createLink", {
-  enumerable: true,
-  get: function get() {
-    return _connection["default"];
-  }
-});
-Object.defineProperty(exports, "retrieveData", {
-  enumerable: true,
-  get: function get() {
-    return _transactions.retrieveData;
-  }
-});
-Object.defineProperty(exports, "insertData", {
-  enumerable: true,
-  get: function get() {
-    return _transactions.insertData;
-  }
-});
-Object.defineProperty(exports, "createDatabase", {
-  enumerable: true,
-  get: function get() {
-    return _database.createDatabase;
-  }
-});
-Object.defineProperty(exports, "dropDatabase", {
-  enumerable: true,
-  get: function get() {
-    return _database.dropDatabase;
-  }
-});
-Object.defineProperty(exports, "createTable", {
-  enumerable: true,
-  get: function get() {
-    return _table.createTable;
-  }
-});
 exports["default"] = void 0;
 
 var _connection = _interopRequireDefault(require("./connection"));
@@ -56,4 +20,22 @@ var _default = function _default(dbConfig) {
 };
 
 exports["default"] = _default;
+module.exports = {
+  // Data
+  data: {
+    get: _transactions.retrieveData,
+    insert: _transactions.insertData
+  },
+  // Database
+  database: {
+    create: _database.createDatabase,
+    drop: _database.dropDatabase
+  },
+  // Table
+  table: {
+    create: _table.createTable
+  },
+  // Connection
+  createLink: _connection["default"]
+};
 //# sourceMappingURL=index.js.map
