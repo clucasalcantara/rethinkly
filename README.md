@@ -11,7 +11,7 @@
 
 #### 👷 Work in progress 🚧
 
-A carefuly created set of bindings to present an easy way to retrieve data from RethinkDB instances.
+A carefuly created set of bindings to present an easy way to handle RethinkDB instances.
 
 Rethinkly is a collection of methods to make more literal and legible gathering data from rethink into JavaScript applications. Supports node and browser.
 
@@ -26,8 +26,16 @@ Rethink. Again.
 
 #### Available methods:
 
-- rethinkly
-- retrieveData
+- createLink
+- data
+  - insert
+  - get
+- table
+  - create
+  - drop
+database
+  - create
+  - drop
 
 #### Usage
 
