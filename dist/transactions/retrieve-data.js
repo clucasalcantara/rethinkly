@@ -28,7 +28,7 @@ var _hoopaLogger = _interopRequireDefault(require("hoopa-logger"));
  * @return {Array} results
  */
 var processResults = function processResults(results) {
-  return results.length === 1 ? result[0] : results;
+  return results && results.length > 0 ? results[0] : results;
 };
 /**
  * RetrieveData

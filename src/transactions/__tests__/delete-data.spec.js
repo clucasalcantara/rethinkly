@@ -21,7 +21,7 @@ test('[transactions]: should delete a value properly', async t => {
     if (tableCreated) {
       const { generated_keys = [] } = await insertData(conn, 'deletion_example', { teste: 'pass' })
       if (generated_keys.length > 0) {
-        const { errors } = deleteData(conn, 'deletion_example', generated_keys[0])
+        const { errors } = await deleteData(conn, 'deletion_example', generated_keys[0])
         if (!errors) {
           t.pass(`Record ${generated_keys[0]} deleted successfully`)
         }

@@ -1,7 +1,7 @@
 {
   "name": "rethinkly",
-  "version": "1.0.4-6",
-  "description": "a library to make easier the operation handling in rethinkdb",
+  "version": "1.0.4-7",
+  "description": "a library to make easier the operations handling in rethinkdb",
   "main": "dist/index.js",
   "scripts": {
     "example-bootstrap": "babel-node src/example/bootstrap/",

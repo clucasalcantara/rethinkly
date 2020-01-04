@@ -16,7 +16,7 @@ var _table = require("../table");
 
 var _insertData = _interopRequireDefault(require("../insert-data"));
 
-var _retrieveData = _interopRequireDefault(require("../retrieve-data"));
+var _deleteData2 = _interopRequireDefault(require("../delete-data"));
 
 var getConnection =
 /*#__PURE__*/
@@ -31,7 +31,7 @@ function () {
             return _context.abrupt("return", (0, _connection["default"])({
               host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
               port: '28015',
-              db: 'retrieve_example'
+              db: 'deletion_example'
             }));
 
           case 1:
@@ -46,14 +46,17 @@ function () {
     return _ref.apply(this, arguments);
   };
 }();
+/* eslint-disable camelcase */
 
-(0, _ava["default"])('[transactions]: should retrieve a value properly',
+
+(0, _ava["default"])('[transactions]: should delete a value properly',
 /*#__PURE__*/
 function () {
   var _ref2 = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
   _regenerator["default"].mark(function _callee2(t) {
-    var conn, dbCreated, tableCreated, result, data, filtered;
+    var conn, dbCreated, tableCreated, _ref3, _ref3$generated_keys, generated_keys, _deleteData, errors;
+
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -64,61 +67,50 @@ function () {
           case 2:
             conn = _context2.sent;
             _context2.next = 5;
-            return (0, _database.createDatabase)(conn, 'retrieve_example');
+            return (0, _database.createDatabase)(conn, 'deletion_example');
 
           case 5:
             dbCreated = _context2.sent;
 
             if (!dbCreated) {
-              _context2.next = 22;
+              _context2.next = 17;
               break;
             }
 
             _context2.next = 9;
-            return (0, _table.createTable)(conn, 'retrieve_example');
+            return (0, _table.createTable)(conn, 'deletion_example');
 
           case 9:
             tableCreated = _context2.sent;
 
             if (!tableCreated) {
-              _context2.next = 22;
+              _context2.next = 17;
               break;
             }
 
             _context2.next = 13;
-            return (0, _insertData["default"])(conn, 'retrieve_example', [{
-              teste: 'pass'
-            }, {
-              teste: 'fail'
-            }]);
-
-          case 13:
-            result = _context2.sent;
-
-            if (!(result && result.generated_keys)) {
-              _context2.next = 22;
-              break;
-            }
-
-            _context2.next = 17;
-            return (0, _retrieveData["default"])(conn, 'retrieve_example');
-
-          case 17:
-            data = _context2.sent;
-            _context2.next = 20;
-            return (0, _retrieveData["default"])(conn, 'retrieve_example', {
+            return (0, _insertData["default"])(conn, 'deletion_example', {
               teste: 'pass'
             });
 
-          case 20:
-            filtered = _context2.sent;
-            if (data.length === 2 && filtered.length === 1) t.pass('Retrieve data with success');
+          case 13:
+            _ref3 = _context2.sent;
+            _ref3$generated_keys = _ref3.generated_keys;
+            generated_keys = _ref3$generated_keys === void 0 ? [] : _ref3$generated_keys;
 
-          case 22:
-            _context2.next = 24;
-            return (0, _database.dropDatabase)(conn, 'retrieve_example');
+            if (generated_keys.length > 0) {
+              _deleteData = (0, _deleteData2["default"])(conn, 'deletion_example', generated_keys[0]), errors = _deleteData.errors;
 
-          case 24:
+              if (!errors) {
+                t.pass("Record ".concat(generated_keys[0], " deleted successfully"));
+              }
+            }
+
+          case 17:
+            _context2.next = 19;
+            return (0, _database.dropDatabase)(conn, 'deletion_example');
+
+          case 19:
           case "end":
             return _context2.stop();
         }
@@ -130,4 +122,5 @@ function () {
     return _ref2.apply(this, arguments);
   };
 }());
-//# sourceMappingURL=retrieve-data.spec.js.map
+/* eslint-enable camelcase */
+//# sourceMappingURL=delete-data.spec.js.map
