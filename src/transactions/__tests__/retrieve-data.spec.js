@@ -19,7 +19,7 @@ test('[transactions]: should retrieve a value properly', async t => {
     const tableCreated = await createTable(conn, 'retrieve_example')
     if (tableCreated) {
       const result = await insertData(conn, 'retrieve_example', [{ teste: 'pass' }, { teste: 'fail' }])
-      if (result.generated_keys) {
+      if (result && result.generated_keys) {
         const data = await retrieveData(conn, 'retrieve_example')
         const filtered = await retrieveData(conn, 'retrieve_example', { teste: 'pass' })
 

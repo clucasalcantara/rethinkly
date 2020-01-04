@@ -1,5 +1,5 @@
 import createLink from './connection'
-import { retrieveData, insertData } from './transactions'
+import { retrieveData, insertData, deleteData } from './transactions'
 import { createDatabase, dropDatabase } from './transactions/database'
 import { createTable } from './transactions/table'
 
@@ -10,6 +10,7 @@ module.exports = {
   data: {
     get: retrieveData,
     insert: insertData,
+    remove: deleteData,
   },
   // Database
   database: {

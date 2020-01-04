@@ -24,7 +24,8 @@ module.exports = {
   // Data
   data: {
     get: _transactions.retrieveData,
-    insert: _transactions.insertData
+    insert: _transactions.insertData,
+    remove: _transactions.deleteData
   },
   // Database
   database: {

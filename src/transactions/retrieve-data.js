@@ -12,7 +12,7 @@ import logger from 'hoopa-logger'
  * @param {Array} results
  * @return {Array} results
  */
-const processResults = results => results.length === 1 result[0] : results
+const processResults = results => (results && results.length > 0 ? results[0] : results)
 
 /**
  * RetrieveData
