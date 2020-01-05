@@ -16,7 +16,7 @@ var _table = require("../table");
 
 var _insertData = _interopRequireDefault(require("../insert-data"));
 
-var _deleteData2 = _interopRequireDefault(require("../delete-data"));
+var _deleteData = _interopRequireDefault(require("../delete-data"));
 
 var getConnection =
 /*#__PURE__*/
@@ -55,7 +55,7 @@ function () {
   var _ref2 = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
   _regenerator["default"].mark(function _callee2(t) {
-    var conn, dbCreated, tableCreated, _ref3, _ref3$generated_keys, generated_keys, _deleteData, errors;
+    var conn, dbCreated, tableCreated, _ref3, _ref3$generated_keys, generated_keys, _ref4, errors;
 
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
@@ -73,7 +73,7 @@ function () {
             dbCreated = _context2.sent;
 
             if (!dbCreated) {
-              _context2.next = 17;
+              _context2.next = 22;
               break;
             }
 
@@ -84,7 +84,7 @@ function () {
             tableCreated = _context2.sent;
 
             if (!tableCreated) {
-              _context2.next = 17;
+              _context2.next = 22;
               break;
             }
 
@@ -98,19 +98,27 @@ function () {
             _ref3$generated_keys = _ref3.generated_keys;
             generated_keys = _ref3$generated_keys === void 0 ? [] : _ref3$generated_keys;
 
-            if (generated_keys.length > 0) {
-              _deleteData = (0, _deleteData2["default"])(conn, 'deletion_example', generated_keys[0]), errors = _deleteData.errors;
-
-              if (!errors) {
-                t.pass("Record ".concat(generated_keys[0], " deleted successfully"));
-              }
+            if (!(generated_keys.length > 0)) {
+              _context2.next = 22;
+              break;
             }
 
-          case 17:
             _context2.next = 19;
-            return (0, _database.dropDatabase)(conn, 'deletion_example');
+            return (0, _deleteData["default"])(conn, 'deletion_example', generated_keys[0]);
 
           case 19:
+            _ref4 = _context2.sent;
+            errors = _ref4.errors;
+
+            if (!errors) {
+              t.pass("Record ".concat(generated_keys[0], " deleted successfully"));
+            }
+
+          case 22:
+            _context2.next = 24;
+            return (0, _database.dropDatabase)(conn, 'deletion_example');
+
+          case 24:
           case "end":
             return _context2.stop();
         }
