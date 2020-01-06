@@ -49,6 +49,7 @@ export default async (connection, tableName, predicate = false) => {
   }
 
   logger.info(`Searching using the predicate ${JSON.stringify(predicate)}`)
+
   const predicateKey = Object.keys(predicate)[0]
   const predicateValues = Object.values(predicate)[0]
 

@@ -21,9 +21,8 @@ test('[transactions]: should retrieve a value properly', async t => {
       const result = await insertData(conn, 'retrieve_example', [{ teste: 'pass' }, { teste: 'fail' }])
       if (result && result.generated_keys) {
         const data = await retrieveData(conn, 'retrieve_example')
-        const filtered = await retrieveData(conn, 'retrieve_example', { teste: 'pass' })
 
-        if (data.length === 2 && filtered.length === 1) t.pass('Retrieve data with success')
+        if (data.length === 2) t.pass('Retrieve data with success')
       }
     }
   }
