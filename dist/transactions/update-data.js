@@ -16,7 +16,7 @@ var _rethinkdb = _interopRequireDefault(require("rethinkdb"));
 var _hoopaLogger = _interopRequireDefault(require("hoopa-logger"));
 
 /**
- * Retrieve data module
+ * Update data module
  * @memberof rethinkly
  */
 

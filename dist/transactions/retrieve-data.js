@@ -9,6 +9,8 @@ exports["default"] = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
+
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
 var _rethinkdb = _interopRequireDefault(require("rethinkdb"));
@@ -48,18 +50,22 @@ function () {
   _regenerator["default"].mark(function _callee(connection, tableName) {
     var predicate,
         id,
+        predicateKey,
+        predicateValues,
         _args = arguments;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            predicate = _args.length > 2 && _args[2] !== undefined ? _args[2] : {};
+            predicate = _args.length > 2 && _args[2] !== undefined ? _args[2] : false;
             id = predicate.id;
 
             if (predicate) {
-              _context.next = 4;
+              _context.next = 5;
               break;
             }
+
+            _hoopaLogger["default"].info("Searching using no predicate");
 
             return _context.abrupt("return", _rethinkdb["default"].table(tableName).run(connection).then(function (cursor) {
               return cursor.toArray(function (err, results) {
@@ -68,9 +74,9 @@ function () {
               });
             }));
 
-          case 4:
+          case 5:
             if (!(id && Object.keys(predicate).length === 1)) {
-              _context.next = 6;
+              _context.next = 7;
               break;
             }
 
@@ -78,10 +84,16 @@ function () {
               return result;
             }));
 
-          case 6:
+          case 7:
             _hoopaLogger["default"].info("Searching using the predicate ".concat(JSON.stringify(predicate)));
 
-            return _context.abrupt("return", _rethinkdb["default"].table(tableName).filter(predicate).run(connection).then(function (cursor) {
+            predicateKey = Object.keys(predicate)[0];
+            predicateValues = Object.values(predicate)[0];
+            return _context.abrupt("return", _rethinkdb["default"].table(tableName).filter(function (trip) {
+              var _trip;
+
+              return (_trip = trip(predicateKey)).contains.apply(_trip, (0, _toConsumableArray2["default"])(predicateValues));
+            }).run(connection).then(function (cursor) {
               return cursor.toArray(function (err, results) {
                 if (err) throw err;
 
@@ -91,7 +103,7 @@ function () {
               });
             }));
 
-          case 8:
+          case 11:
           case "end":
             return _context.stop();
         }

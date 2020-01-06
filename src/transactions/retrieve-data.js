@@ -22,10 +22,12 @@ const processResults = results => (results && results.length > 0 ? results[0] : 
  * @param {String} predicate?
  * @returns {Array||Object} results || result
  */
-export default async (connection, tableName, predicate = {}) => {
+export default async (connection, tableName, predicate = false) => {
   const { id } = predicate
 
   if (!predicate) {
+    logger.info(`Searching using no predicate`)
+
     return rethinkdb
       .table(tableName)
       .run(connection)
@@ -47,10 +49,12 @@ export default async (connection, tableName, predicate = {}) => {
   }
 
   logger.info(`Searching using the predicate ${JSON.stringify(predicate)}`)
+  const predicateKey = Object.keys(predicate)[0]
+  const predicateValues = Object.values(predicate)[0]
 
   return rethinkdb
     .table(tableName)
-    .filter(predicate)
+    .filter(trip => trip(predicateKey).contains(...predicateValues))
     .run(connection)
     .then(cursor =>
       cursor.toArray((err, results) => {
