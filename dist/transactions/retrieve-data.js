@@ -9,6 +9,8 @@ exports["default"] = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
 var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
@@ -85,14 +87,20 @@ function () {
             }));
 
           case 7:
-            _hoopaLogger["default"].info("Searching using the predicate ".concat(JSON.stringify(predicate)));
-
             predicateKey = Object.keys(predicate)[0];
             predicateValues = Object.values(predicate)[0];
-            return _context.abrupt("return", _rethinkdb["default"].table(tableName).filter(function (trip) {
-              var _trip;
 
-              return (_trip = trip(predicateKey)).contains.apply(_trip, (0, _toConsumableArray2["default"])(predicateValues));
+            if (!Array.isArray(predicateValues)) {
+              _context.next = 12;
+              break;
+            }
+
+            _hoopaLogger["default"].info("Searching using the predicate ".concat(JSON.stringify(predicate)));
+
+            return _context.abrupt("return", _rethinkdb["default"].table(tableName).filter(function (data) {
+              var _data;
+
+              return (_data = data(predicateKey)).contains.apply(_data, (0, _toConsumableArray2["default"])(predicateValues));
             }).run(connection).then(function (cursor) {
               return cursor.toArray(function (err, results) {
                 if (err) throw err;
@@ -103,7 +111,18 @@ function () {
               });
             }));
 
-          case 11:
+          case 12:
+            return _context.abrupt("return", _rethinkdb["default"].table(tableName).filter((0, _defineProperty2["default"])({}, predicateKey, predicateValues)).run(connection).then(function (cursor) {
+              return cursor.toArray(function (err, results) {
+                if (err) throw err;
+
+                _hoopaLogger["default"].info("Search resuls: ".concat(results.length));
+
+                return processResults(results);
+              });
+            }));
+
+          case 13:
           case "end":
             return _context.stop();
         }

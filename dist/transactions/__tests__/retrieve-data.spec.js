@@ -53,7 +53,7 @@ function () {
   var _ref2 = (0, _asyncToGenerator2["default"])(
   /*#__PURE__*/
   _regenerator["default"].mark(function _callee2(t) {
-    var conn, dbCreated, tableCreated, result, data, filtered;
+    var conn, dbCreated, tableCreated, result, data;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -70,7 +70,7 @@ function () {
             dbCreated = _context2.sent;
 
             if (!dbCreated) {
-              _context2.next = 22;
+              _context2.next = 19;
               break;
             }
 
@@ -81,7 +81,7 @@ function () {
             tableCreated = _context2.sent;
 
             if (!tableCreated) {
-              _context2.next = 22;
+              _context2.next = 19;
               break;
             }
 
@@ -96,7 +96,7 @@ function () {
             result = _context2.sent;
 
             if (!(result && result.generated_keys)) {
-              _context2.next = 22;
+              _context2.next = 19;
               break;
             }
 
@@ -105,20 +105,13 @@ function () {
 
           case 17:
             data = _context2.sent;
-            _context2.next = 20;
-            return (0, _retrieveData["default"])(conn, 'retrieve_example', {
-              teste: 'pass'
-            });
+            if (data.length === 2) t.pass('Retrieve data with success');
 
-          case 20:
-            filtered = _context2.sent;
-            if (data.length === 2 && filtered.length === 1) t.pass('Retrieve data with success');
-
-          case 22:
-            _context2.next = 24;
+          case 19:
+            _context2.next = 21;
             return (0, _database.dropDatabase)(conn, 'retrieve_example');
 
-          case 24:
+          case 21:
           case "end":
             return _context2.stop();
         }
