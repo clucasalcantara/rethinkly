@@ -48,14 +48,28 @@ export default async (connection, tableName, predicate = false) => {
       .then(result => result)
   }
 
-  logger.info(`Searching using the predicate ${JSON.stringify(predicate)}`)
-
   const predicateKey = Object.keys(predicate)[0]
   const predicateValues = Object.values(predicate)[0]
 
+  if (Array.isArray(predicateValues)) {
+    logger.info(`Searching using the predicate ${JSON.stringify(predicate)}`)
+
+    return rethinkdb
+      .table(tableName)
+      .filter(data => data(predicateKey).contains(...predicateValues))
+      .run(connection)
+      .then(cursor =>
+        cursor.toArray((err, results) => {
+          if (err) throw err
+          logger.info(`Search resuls: ${results.length}`)
+          return processResults(results)
+        })
+      )
+  }
+
   return rethinkdb
     .table(tableName)
-    .filter(trip => trip(predicateKey).contains(...predicateValues))
+    .filter({ [predicateKey]: predicateValues })
     .run(connection)
     .then(cursor =>
       cursor.toArray((err, results) => {
