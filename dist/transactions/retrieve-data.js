@@ -48,6 +48,7 @@ var _default = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(connection, tableName) {
     var predicate,
         id,
+        result,
         predicateKey,
         predicateValues,
         _args = arguments;
@@ -56,33 +57,10 @@ var _default = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             predicate = _args.length > 2 && _args[2] !== undefined ? _args[2] : false;
-            console.log('Oiiiii');
-            console.log(predicate);
             id = predicate.id;
 
-            if (!id) {
-              _context.next = 11;
-              break;
-            }
-
-            _context.t0 = console;
-            _context.next = 8;
-            return _rethinkdb["default"].table(tableName).get(id).run(connection).then(function (result) {
-              return result;
-            });
-
-          case 8:
-            _context.t1 = _context.sent;
-
-            _context.t0.log.call(_context.t0, _context.t1);
-
-            return _context.abrupt("return", _rethinkdb["default"].table(tableName).get(id).run(connection).then(function (result) {
-              return result;
-            }));
-
-          case 11:
             if (predicate) {
-              _context.next = 14;
+              _context.next = 5;
               break;
             }
 
@@ -95,12 +73,27 @@ var _default = /*#__PURE__*/function () {
               });
             }));
 
-          case 14:
+          case 5:
+            if (!(id && Object.keys(predicate).length === 1)) {
+              _context.next = 10;
+              break;
+            }
+
+            _context.next = 8;
+            return _rethinkdb["default"].table(tableName).get(id).run(connection).then(function (result) {
+              return result;
+            });
+
+          case 8:
+            result = _context.sent;
+            return _context.abrupt("return", result);
+
+          case 10:
             predicateKey = Object.keys(predicate)[0];
             predicateValues = Object.values(predicate)[0];
 
             if (!Array.isArray(predicateValues)) {
-              _context.next = 19;
+              _context.next = 15;
               break;
             }
 
@@ -120,7 +113,7 @@ var _default = /*#__PURE__*/function () {
               });
             }));
 
-          case 19:
+          case 15:
             return _context.abrupt("return", _rethinkdb["default"].table(tableName).filter((0, _defineProperty2["default"])({}, predicateKey, predicateValues)).run(connection).then(function (cursor) {
               return cursor.toArray(function (err, results) {
                 if (err) throw err;
@@ -131,7 +124,7 @@ var _default = /*#__PURE__*/function () {
               });
             }));
 
-          case 20:
+          case 16:
           case "end":
             return _context.stop();
         }
