@@ -16,12 +16,8 @@ var _table = require("../table");
 
 var _insertData = _interopRequireDefault(require("../insert-data"));
 
-var getConnection =
-/*#__PURE__*/
-function () {
-  var _ref = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee() {
+var getConnection = /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -45,12 +41,8 @@ function () {
   };
 }();
 
-(0, _ava["default"])('[transactions]: should inserts value properly',
-/*#__PURE__*/
-function () {
-  var _ref2 = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee2(t) {
+(0, _ava["default"])('[transactions]: should inserts value properly', /*#__PURE__*/function () {
+  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(t) {
     var conn, dbCreated, tableCreated, result;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {

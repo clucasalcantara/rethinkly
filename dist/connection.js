@@ -25,12 +25,8 @@ var _rethinkdb = _interopRequireDefault(require("rethinkdb"));
  * @param {Object} dbConfig
  * @returns {Object} connection
  */
-var _default =
-/*#__PURE__*/
-function () {
-  var _ref = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee(dbConfig) {
+var _default = /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(dbConfig) {
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {

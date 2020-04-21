@@ -41,11 +41,13 @@ export default async (connection, tableName, predicate = false) => {
   }
 
   if (id && Object.keys(predicate).length === 1) {
-    return rethinkdb
+    const result = await rethinkdb
       .table(tableName)
       .get(id)
       .run(connection)
       .then(result => result)
+
+    return result
   }
 
   const predicateKey = Object.keys(predicate)[0]

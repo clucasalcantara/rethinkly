@@ -26,12 +26,8 @@ var _hoopaLogger = _interopRequireDefault(require("hoopa-logger"));
  * @param {String} dbName
  * @param {Function} done
  */
-var createDatabase =
-/*#__PURE__*/
-function () {
-  var _ref = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee(connection, dbName, done) {
+var createDatabase = /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(connection, dbName, done) {
     var databaseList, dbAlreadyExists, result;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
@@ -95,12 +91,8 @@ function () {
 
 exports.createDatabase = createDatabase;
 
-var dropDatabase =
-/*#__PURE__*/
-function () {
-  var _ref2 = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee2(connection, dbName, done) {
+var dropDatabase = /*#__PURE__*/function () {
+  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(connection, dbName, done) {
     var databaseList, dbAlreadyExists, result;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {

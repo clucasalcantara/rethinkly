@@ -15,12 +15,14 @@ var _dist = require("../../../dist");
  * @memberof rethinkly
  * Made to show a few usage of rethink and also to create the teste suite database
  */
-var run =
-/*#__PURE__*/
-function () {
-  var _ref = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee() {
+
+/**
+ * Run
+ * Runs the bootstraper
+ * @returns void
+ */
+var run = /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
     var db, connection;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {

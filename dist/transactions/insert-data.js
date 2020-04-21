@@ -25,12 +25,8 @@ var _rethinkdb = _interopRequireDefault(require("rethinkdb"));
  * @param {String} tableName
  * @returns {Array||Object} results || result
  */
-var _default =
-/*#__PURE__*/
-function () {
-  var _ref = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee(connection, tableName, data) {
+var _default = /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(connection, tableName, data) {
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {

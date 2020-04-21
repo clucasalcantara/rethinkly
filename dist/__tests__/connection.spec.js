@@ -10,12 +10,8 @@ var _ava = _interopRequireDefault(require("ava"));
 
 var _connection = _interopRequireDefault(require("../connection"));
 
-(0, _ava["default"])('should have the right connection shape',
-/*#__PURE__*/
-function () {
-  var _ref = (0, _asyncToGenerator2["default"])(
-  /*#__PURE__*/
-  _regenerator["default"].mark(function _callee(t) {
+(0, _ava["default"])('should have the right connection shape', /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(t) {
     var connection;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
