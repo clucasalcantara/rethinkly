@@ -40,7 +40,7 @@ database
 #### Usage
 
 ```javascript
-import rethinkly from 'rethinkly'
+import { createLink } from 'rethinkly'
 
 const dbConfig = {
   host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
@@ -48,7 +48,7 @@ const dbConfig = {
   db: 'the_database',
 }
 
-const instance = rethinkly(dbConfig)
+const instance = createLink(dbConfig)
 ```
 
 ### API
@@ -66,11 +66,11 @@ const instance = rethinkly(dbConfig)
 #### Example
 
 ```javascript
-import rethinkly, { retrieveData } from 'rethinkly'
-const instance = rethinkly(dbConfig)
+import { createLink, data } from 'rethinkly'
+const instance = createLink(dbConfig)
 
 // Get your data as list
-const users = retrieveData(instance, 'users')
+const users = data.get(instance, 'users')
 /** output 
 [
     {
@@ -85,12 +85,12 @@ const users = retrieveData(instance, 'users')
 /**
  * Match your results using where clause
  */
-const users = retrieveData(instance, 'users', { role: '99bd6af9-922e-4787-a97d-3d915f60e65b' })
+const users = data.get(instance, 'users', { role: '99bd6af9-922e-4787-a97d-3d915f60e65b' })
 /**
 
 * Implicit byId
 */
-const users = retrieveData(instance, 'users', 'a3bbd8e3-b53f-4ecd-bab9-6c65cfcf931b')
+const users = data.get(instance, 'users', 'a3bbd8e3-b53f-4ecd-bab9-6c65cfcf931b')
 
 /** output 
 [
