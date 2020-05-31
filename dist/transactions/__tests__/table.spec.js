@@ -64,7 +64,7 @@ var getConnection = /*#__PURE__*/function () {
             result = _context2.sent;
 
             if (!result) {
-              _context2.next = 15;
+              _context2.next = 18;
               break;
             }
 
@@ -74,12 +74,16 @@ var getConnection = /*#__PURE__*/function () {
           case 13:
             created = _context2.sent;
 
-            if (created) {
-              t.pass('table succesfully created');
-              (0, _database.dropDatabase)(conn, 'table_example');
+            if (!created) {
+              _context2.next = 18;
+              break;
             }
 
-          case 15:
+            t.pass('table succesfully created');
+            _context2.next = 18;
+            return (0, _database.dropDatabase)(conn, 'table_example');
+
+          case 18:
           case "end":
             return _context2.stop();
         }

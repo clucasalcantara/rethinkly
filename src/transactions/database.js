@@ -51,3 +51,40 @@ export const dropDatabase = async (connection, dbName, done) => {
   logger.warn(`db ${dbName} does not exists!`)
   return false
 }
+
+/**
+ * Check is a database exist into the server
+ * @param {Object} connection
+ * @param {String} dbName
+ * @param {Function} done
+ */
+export const checkForExistence = async (connection, dbName) => {
+  const databaseList = await rethinkdb.dbList().run(connection)
+  const dbAlreadyExists = databaseList.find(db => db === dbName)
+
+  if (dbAlreadyExists) {
+    logger.info(`DB ${dbName} already exists`)
+    return true
+  }
+
+  logger.warn(`DB ${dbName} does not exists!`)
+  return false
+}
+
+/**
+ * Return databases list
+ * @param {Object} connection
+ * @param {String} dbName
+ * @param {Function} done
+ */
+export const listAll = async connection => {
+  const databaseList = await rethinkdb.dbList().run(connection)
+
+  if (databaseList.length > 0) {
+    logger.info(`${databaseList.length} listed`)
+    return databaseList
+  }
+
+  logger.warn(`No existent databases`)
+  return []
+}

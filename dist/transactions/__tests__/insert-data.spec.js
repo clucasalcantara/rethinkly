@@ -60,7 +60,7 @@ var getConnection = /*#__PURE__*/function () {
             dbCreated = _context2.sent;
 
             if (!dbCreated) {
-              _context2.next = 15;
+              _context2.next = 18;
               break;
             }
 
@@ -71,7 +71,7 @@ var getConnection = /*#__PURE__*/function () {
             tableCreated = _context2.sent;
 
             if (!tableCreated) {
-              _context2.next = 15;
+              _context2.next = 18;
               break;
             }
 
@@ -83,15 +83,18 @@ var getConnection = /*#__PURE__*/function () {
           case 13:
             result = _context2.sent;
 
-            if (result.generated_keys) {
-              t.pass('value inserted properly');
+            if (!result.generated_keys) {
+              _context2.next = 18;
+              break;
             }
 
-          case 15:
             _context2.next = 17;
             return (0, _database.dropDatabase)(conn, 'insertion_example');
 
           case 17:
+            t.pass('value inserted properly');
+
+          case 18:
           case "end":
             return _context2.stop();
         }

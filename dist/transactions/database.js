@@ -5,7 +5,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.dropDatabase = exports.createDatabase = void 0;
+exports.listAll = exports.checkForExistence = exports.dropDatabase = exports.createDatabase = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
@@ -144,6 +144,107 @@ var dropDatabase = /*#__PURE__*/function () {
     return _ref2.apply(this, arguments);
   };
 }();
+/**
+ * Check is a database exist into the server
+ * @param {Object} connection
+ * @param {String} dbName
+ * @param {Function} done
+ */
+
 
 exports.dropDatabase = dropDatabase;
+
+var checkForExistence = /*#__PURE__*/function () {
+  var _ref3 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee3(connection, dbName) {
+    var databaseList, dbAlreadyExists;
+    return _regenerator["default"].wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.next = 2;
+            return _rethinkdb["default"].dbList().run(connection);
+
+          case 2:
+            databaseList = _context3.sent;
+            dbAlreadyExists = databaseList.find(function (db) {
+              return db === dbName;
+            });
+
+            if (!dbAlreadyExists) {
+              _context3.next = 7;
+              break;
+            }
+
+            _hoopaLogger["default"].info("DB ".concat(dbName, " already exists"));
+
+            return _context3.abrupt("return", true);
+
+          case 7:
+            _hoopaLogger["default"].warn("DB ".concat(dbName, " does not exists!"));
+
+            return _context3.abrupt("return", false);
+
+          case 9:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function checkForExistence(_x7, _x8) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+/**
+ * Return databases list
+ * @param {Object} connection
+ * @param {String} dbName
+ * @param {Function} done
+ */
+
+
+exports.checkForExistence = checkForExistence;
+
+var listAll = /*#__PURE__*/function () {
+  var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(connection, dbName) {
+    var databaseList;
+    return _regenerator["default"].wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return _rethinkdb["default"].dbList().run(connection);
+
+          case 2:
+            databaseList = _context4.sent;
+
+            if (!databaseList.length) {
+              _context4.next = 6;
+              break;
+            }
+
+            _hoopaLogger["default"].info("".concat(databaseList.length, " listed"));
+
+            return _context4.abrupt("return", databaseList);
+
+          case 6:
+            _hoopaLogger["default"].warn("No existent databases");
+
+            return _context4.abrupt("return", []);
+
+          case 8:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function listAll(_x9, _x10) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+exports.listAll = listAll;
 //# sourceMappingURL=database.js.map

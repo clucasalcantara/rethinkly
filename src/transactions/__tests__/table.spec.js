@@ -18,7 +18,7 @@ test('should create a table properly', async t => {
     const created = await createTable(conn, 'table_example')
     if (created) {
       t.pass('table succesfully created')
-      dropDatabase(conn, 'table_example')
+      await dropDatabase(conn, 'table_example')
     }
   }
 })

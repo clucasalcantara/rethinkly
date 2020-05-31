@@ -19,10 +19,9 @@ test('[transactions]: should inserts value properly', async t => {
     if (tableCreated) {
       const result = await insertData(conn, 'insertion_example', { teste: 'pass' })
       if (result.generated_keys) {
+        await dropDatabase(conn, 'insertion_example')
         t.pass('value inserted properly')
       }
     }
   }
-
-  await dropDatabase(conn, 'insertion_example')
 })

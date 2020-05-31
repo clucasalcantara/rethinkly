@@ -15,6 +15,8 @@ var _database = require("./transactions/database");
 
 var _table = require("./transactions/table");
 
+var _seed = require("./transactions/seed");
+
 var _default = function _default(dbConfig) {
   return (0, _connection["default"])(dbConfig);
 };
@@ -26,12 +28,15 @@ module.exports = {
     get: _transactions.retrieveData,
     insert: _transactions.insertData,
     remove: _transactions.deleteData,
-    update: _transactions.updateData
+    update: _transactions.updateData,
+    seed: _seed.seed
   },
   // Database
   database: {
     create: _database.createDatabase,
-    drop: _database.dropDatabase
+    drop: _database.dropDatabase,
+    checkForExistence: _database.checkForExistence,
+    list: _database.listAll
   },
   // Table
   table: {
