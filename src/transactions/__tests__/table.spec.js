@@ -1,7 +1,7 @@
 import test from 'ava'
 import createLink from '../../connection'
 import { createDatabase, dropDatabase } from '../database'
-import { createTable } from '../table'
+import { createTable, dropTable } from '../table'
 
 const getConnection = async () =>
   createLink({
@@ -10,7 +10,7 @@ const getConnection = async () =>
     db: 'table_example',
   })
 
-test('should create a table properly', async t => {
+test('should create and drop a table properly', async t => {
   const conn = await getConnection()
   const result = await createDatabase(await getConnection(), 'table_example')
 
@@ -18,6 +18,8 @@ test('should create a table properly', async t => {
     const created = await createTable(conn, 'table_example')
     if (created) {
       t.pass('table succesfully created')
+      await dropTable(conn, 'table_example')
+      t.pass('table succesfully dropped')
       await dropDatabase(conn, 'table_example')
     }
   }

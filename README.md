@@ -28,14 +28,19 @@ Rethink. Again.
 
 - createLink
 - data
-  - insert
-  - get
+  get
+  insert
+  remove
+  update
+  seed
 - table
   - create
   - drop
-database
+    database
   - create
   - drop
+  - checkForExistence
+  - list
 
 #### Usage
 
@@ -53,7 +58,7 @@ const instance = createLink(dbConfig)
 
 ### API
 
-##### `retrieveData`
+##### `Retrieving data (data.get)`
 
 - Method to get a list or a specific value from a table.
 
