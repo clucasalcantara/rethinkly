@@ -23,7 +23,7 @@ const processResults = results => (results && results.length > 0 ? results[0] : 
  * @returns {Array||Object} results || result
  */
 export default async (connection, tableName, predicate = false) => {
-  const { id } = predicate
+  const { id, name } = predicate
 
   if (!predicate) {
     logger.info(`Searching using no predicate`)
@@ -40,6 +40,7 @@ export default async (connection, tableName, predicate = false) => {
       )
   }
 
+  // ID SEARCH
   if (id && Object.keys(predicate).length === 1) {
     const result = await rethinkdb
       .table(tableName)
@@ -50,33 +51,47 @@ export default async (connection, tableName, predicate = false) => {
     return result
   }
 
-  const predicateKey = Object.keys(predicate)[0]
-  const predicateValues = Object.values(predicate)[0]
+  if (name) {
+    delete predicate.name
+  }
 
-  if (Array.isArray(predicateValues)) {
-    logger.info(`Searching using the predicate ${JSON.stringify(predicate)}`)
+  const predicateKeys = Object.keys(predicate)
+  let queryBuilder = rethinkdb.table(tableName)
 
-    return rethinkdb
-      .table(tableName)
-      .filter(data => data(predicateKey).contains(...predicateValues))
+  for (const key of predicateKeys) {
+    const value = predicate[key]
+
+    if (Array.isArray(value)) {
+      queryBuilder = queryBuilder.filter(data => data(key).contains(value))
+      delete predicate[key]
+
+      return queryBuilder
+    }
+  }
+
+  if (name) {
+    return queryBuilder
+      .filter(predicate)
+      .filter(data => data('name').match(`^${name}`))
       .run(connection)
       .then(cursor =>
         cursor.toArray((err, results) => {
           if (err) throw err
-          logger.info(`Search resuls: ${results.length}`)
+          logger.info(`Search results: ${results.length}`)
+
           return processResults(results)
         })
       )
   }
 
-  return rethinkdb
-    .table(tableName)
-    .filter({ [predicateKey]: predicateValues })
+  return queryBuilder
+    .filter(predicate)
     .run(connection)
     .then(cursor =>
       cursor.toArray((err, results) => {
         if (err) throw err
-        logger.info(`Search resuls: ${results.length}`)
+        logger.info(`Search results: ${results.length}`)
+
         return processResults(results)
       })
     )

@@ -105,10 +105,12 @@ var _default = /*#__PURE__*/function () {
               var value = predicate[key];
 
               if (Array.isArray(value)) {
+                queryBuilder = queryBuilder.filter(function (data) {
+                  return data(key).contains(value);
+                });
+                delete predicate[key];
                 return {
-                  v: queryBuilder = queryBuilder.filter(function (data) {
-                    return data(key).contains(value);
-                  })
+                  v: queryBuilder
                 };
               }
             };
