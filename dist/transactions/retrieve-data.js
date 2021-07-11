@@ -9,9 +9,7 @@ exports["default"] = void 0;
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
-var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
-
-var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
+var _typeof2 = _interopRequireDefault(require("@babel/runtime/helpers/typeof"));
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
@@ -48,16 +46,22 @@ var _default = /*#__PURE__*/function () {
   var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(connection, tableName) {
     var predicate,
         id,
+        name,
         result,
-        predicateKey,
-        predicateValues,
+        predicateKeys,
+        queryBuilder,
+        _loop,
+        _i,
+        _predicateKeys,
+        _ret,
         _args = arguments;
+
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             predicate = _args.length > 2 && _args[2] !== undefined ? _args[2] : false;
-            id = predicate.id;
+            id = predicate.id, name = predicate.name;
 
             if (predicate) {
               _context.next = 5;
@@ -89,42 +93,78 @@ var _default = /*#__PURE__*/function () {
             return _context.abrupt("return", result);
 
           case 10:
-            predicateKey = Object.keys(predicate)[0];
-            predicateValues = Object.values(predicate)[0];
+            if (name) {
+              delete predicate.name;
+            }
 
-            if (!Array.isArray(predicateValues)) {
-              _context.next = 15;
+            predicateKeys = Object.keys(predicate);
+            queryBuilder = _rethinkdb["default"].table(tableName);
+
+            _loop = function _loop() {
+              var key = _predicateKeys[_i];
+              var value = predicate[key];
+
+              if (Array.isArray(value)) {
+                return {
+                  v: queryBuilder = queryBuilder.filter(function (data) {
+                    return data(key).contains(value);
+                  })
+                };
+              }
+            };
+
+            _i = 0, _predicateKeys = predicateKeys;
+
+          case 15:
+            if (!(_i < _predicateKeys.length)) {
+              _context.next = 22;
               break;
             }
 
-            _hoopaLogger["default"].info("Searching using the predicate ".concat(JSON.stringify(predicate)));
+            _ret = _loop();
 
-            return _context.abrupt("return", _rethinkdb["default"].table(tableName).filter(function (data) {
-              var _data;
+            if (!((0, _typeof2["default"])(_ret) === "object")) {
+              _context.next = 19;
+              break;
+            }
 
-              return (_data = data(predicateKey)).contains.apply(_data, (0, _toConsumableArray2["default"])(predicateValues));
+            return _context.abrupt("return", _ret.v);
+
+          case 19:
+            _i++;
+            _context.next = 15;
+            break;
+
+          case 22:
+            if (!name) {
+              _context.next = 24;
+              break;
+            }
+
+            return _context.abrupt("return", queryBuilder.filter(predicate).filter(function (data) {
+              return data('name').match("^".concat(name));
             }).run(connection).then(function (cursor) {
               return cursor.toArray(function (err, results) {
                 if (err) throw err;
 
-                _hoopaLogger["default"].info("Search resuls: ".concat(results.length));
+                _hoopaLogger["default"].info("Search results: ".concat(results.length));
 
                 return processResults(results);
               });
             }));
 
-          case 15:
-            return _context.abrupt("return", _rethinkdb["default"].table(tableName).filter((0, _defineProperty2["default"])({}, predicateKey, predicateValues)).run(connection).then(function (cursor) {
+          case 24:
+            return _context.abrupt("return", queryBuilder.filter(predicate).run(connection).then(function (cursor) {
               return cursor.toArray(function (err, results) {
                 if (err) throw err;
 
-                _hoopaLogger["default"].info("Search resuls: ".concat(results.length));
+                _hoopaLogger["default"].info("Search results: ".concat(results.length));
 
                 return processResults(results);
               });
             }));
 
-          case 16:
+          case 25:
           case "end":
             return _context.stop();
         }

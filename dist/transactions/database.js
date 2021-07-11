@@ -207,7 +207,7 @@ var checkForExistence = /*#__PURE__*/function () {
 exports.checkForExistence = checkForExistence;
 
 var listAll = /*#__PURE__*/function () {
-  var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(connection, dbName) {
+  var _ref4 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(connection) {
     var databaseList;
     return _regenerator["default"].wrap(function _callee4$(_context4) {
       while (1) {
@@ -219,7 +219,7 @@ var listAll = /*#__PURE__*/function () {
           case 2:
             databaseList = _context4.sent;
 
-            if (!databaseList.length) {
+            if (!(databaseList.length > 0)) {
               _context4.next = 6;
               break;
             }
@@ -241,7 +241,7 @@ var listAll = /*#__PURE__*/function () {
     }, _callee4);
   }));
 
-  return function listAll(_x9, _x10) {
+  return function listAll(_x9) {
     return _ref4.apply(this, arguments);
   };
 }();

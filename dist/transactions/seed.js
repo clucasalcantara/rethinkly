@@ -21,7 +21,7 @@ var _database = require("./database");
 
 var _table = require("./table");
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -65,7 +65,7 @@ var seed = /*#__PURE__*/function () {
             _hoopaLogger["default"].info("".concat(database, " created successfully!"));
 
             _context2.next = 13;
-            return (0, _connection["default"])(_objectSpread({}, connection, {
+            return (0, _connection["default"])(_objectSpread(_objectSpread({}, connection), {}, {
               db: database
             }));
 
@@ -73,7 +73,6 @@ var seed = /*#__PURE__*/function () {
             contextualConnection = _context2.sent;
             tables.map( /*#__PURE__*/function () {
               var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(table) {
-                var result;
                 return _regenerator["default"].wrap(function _callee$(_context) {
                   while (1) {
                     switch (_context.prev = _context.next) {
@@ -82,11 +81,9 @@ var seed = /*#__PURE__*/function () {
                         return (0, _table.createTable)(contextualConnection, table);
 
                       case 2:
-                        result = _context.sent;
-
                         _hoopaLogger["default"].info("".concat(table, " created successfully!"));
 
-                      case 4:
+                      case 3:
                       case "end":
                         return _context.stop();
                     }

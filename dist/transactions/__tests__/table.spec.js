@@ -39,7 +39,7 @@ var getConnection = /*#__PURE__*/function () {
   };
 }();
 
-(0, _ava["default"])('should create a table properly', /*#__PURE__*/function () {
+(0, _ava["default"])('should create and drop a table properly', /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(t) {
     var conn, result, created;
     return _regenerator["default"].wrap(function _callee2$(_context2) {
@@ -64,7 +64,7 @@ var getConnection = /*#__PURE__*/function () {
             result = _context2.sent;
 
             if (!result) {
-              _context2.next = 18;
+              _context2.next = 21;
               break;
             }
 
@@ -75,15 +75,20 @@ var getConnection = /*#__PURE__*/function () {
             created = _context2.sent;
 
             if (!created) {
-              _context2.next = 18;
+              _context2.next = 21;
               break;
             }
 
             t.pass('table succesfully created');
             _context2.next = 18;
-            return (0, _database.dropDatabase)(conn, 'table_example');
+            return (0, _table.dropTable)(conn, 'table_example');
 
           case 18:
+            t.pass('table succesfully dropped');
+            _context2.next = 21;
+            return (0, _database.dropDatabase)(conn, 'table_example');
+
+          case 21:
           case "end":
             return _context2.stop();
         }

@@ -28,14 +28,14 @@ var _rethinkdb = _interopRequireDefault(require("rethinkdb"));
  * @param {Object} updateData - The update config object
  */
 var _default = /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(connection, _ref2) {
+  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(connection, _ref) {
     var tableName, record, keyValue, _result, result;
 
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            tableName = _ref2.tableName, record = _ref2.record, keyValue = _ref2.keyValue;
+            tableName = _ref.tableName, record = _ref.record, keyValue = _ref.keyValue;
 
             if (!record) {
               _context.next = 7;
@@ -70,7 +70,7 @@ var _default = /*#__PURE__*/function () {
   }));
 
   return function (_x, _x2) {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }();
 

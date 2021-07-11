@@ -40,7 +40,8 @@ module.exports = {
   },
   // Table
   table: {
-    create: _table.createTable
+    create: _table.createTable,
+    drop: _table.dropTable
   },
   // Connection
   createLink: _connection["default"]

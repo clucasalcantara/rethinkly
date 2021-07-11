@@ -47,7 +47,7 @@ var getConnection = /*#__PURE__*/function () {
 
 (0, _ava["default"])('[transactions]: should delete a value properly', /*#__PURE__*/function () {
   var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(t) {
-    var conn, dbCreated, tableCreated, _ref3, _ref3$generated_keys, generated_keys, _ref4, errors;
+    var conn, dbCreated, tableCreated, _yield$insertData, _yield$insertData$gen, generated_keys, _yield$deleteData, errors;
 
     return _regenerator["default"].wrap(function _callee2$(_context2) {
       while (1) {
@@ -86,9 +86,9 @@ var getConnection = /*#__PURE__*/function () {
             });
 
           case 13:
-            _ref3 = _context2.sent;
-            _ref3$generated_keys = _ref3.generated_keys;
-            generated_keys = _ref3$generated_keys === void 0 ? [] : _ref3$generated_keys;
+            _yield$insertData = _context2.sent;
+            _yield$insertData$gen = _yield$insertData.generated_keys;
+            generated_keys = _yield$insertData$gen === void 0 ? [] : _yield$insertData$gen;
 
             if (!(generated_keys.length > 0)) {
               _context2.next = 22;
@@ -99,8 +99,8 @@ var getConnection = /*#__PURE__*/function () {
             return (0, _deleteData["default"])(conn, 'deletion_example', generated_keys[0]);
 
           case 19:
-            _ref4 = _context2.sent;
-            errors = _ref4.errors;
+            _yield$deleteData = _context2.sent;
+            errors = _yield$deleteData.errors;
 
             if (!errors) {
               t.pass("Record ".concat(generated_keys[0], " deleted successfully"));
