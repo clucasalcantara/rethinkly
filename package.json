@@ -31,7 +31,7 @@
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/polyfill": "^7.4.4",
-    "ava": "^1.3.1",
+    "ava": "3.15.0",
     "babel-node": "^0.0.1-security",
     "rethinkdb": "^2.3.3",
     "set-value": "^3.0.1"
@@ -53,7 +53,7 @@
     "husky": "^1.3.1",
     "lint-staged": "^8.1.5",
     "prettier": "^1.18.2",
-    "xo": "^0.24.0"
+    "xo": "0.42.0"
   },
   "xo": {
     "extends": [
