@@ -31,14 +31,14 @@ export const createDatabase = async (connection, dbName, done) => {
 }
 
 /**
- * Drops a database
+ * connection database
  */
-export const getConnection = async () => {
-  return await createLink({
+export const getConnection = async (database = '') =>
+  createLink({
     host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
     port: process.env.ENV === 'mock' ? '28015' : '55001',
+    database: database
   })
-}
 
 /**
  * Drops a database

@@ -14,7 +14,8 @@ import { createTable } from './table'
  */
 export const seed = async dbConfig => {
   const { database, tables } = dbConfig
-  const conn = getConnection()
+  const conn = await getConnection(database)
+  //const contextualConnection = await createLink({ ...connection, db: database })
 
   if (!database || !tables) {
     return logger.error(`Error seedling, malformed configuration scheme`)
@@ -25,9 +26,8 @@ export const seed = async dbConfig => {
   try {
     await createDatabase(conn, database)
     logger.info(`${database} created successfully!`)
-    const contextualConnection = await createLink({ ...connection, db: database })
     tables.map(async table => {
-      await createTable(contextualConnection, table)
+      await createTable(conn, table)
       logger.info(`${table} created successfully!`)
     })
   } catch (error) {
