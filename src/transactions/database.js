@@ -4,6 +4,7 @@
  */
 import rethinkdb from 'rethinkdb'
 import logger from 'hoopa-logger'
+import createLink from '../connection'
 
 /**
  * Creates a database
@@ -27,6 +28,16 @@ export const createDatabase = async (connection, dbName, done) => {
   }
 
   return false
+}
+
+/**
+ * Drops a database
+ */
+export const getConnection = async () => {
+  return await createLink({
+    host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
+    port: process.env.ENV === 'mock' ? '28015' : '55001',
+  })
 }
 
 /**

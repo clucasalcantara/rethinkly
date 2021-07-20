@@ -1,6 +1,6 @@
 {
   "name": "rethinkly",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "a library to make easier the operations handling in rethinkdb",
   "main": "dist/index.js",
   "scripts": {
@@ -8,6 +8,7 @@
     "run-example": "babel-node src/example",
     "build": "babel src/ --out-dir dist/ --source-maps --copy-files",
     "test:ci": "ENV=mock ava",
+    "test:local": "ENV=local ava",
     "test": "ava --verbose",
     "lint": "xo --quiet",
     "lint:format": "xo --quiet --write 'src/**/*.js'"

@@ -1,13 +1,5 @@
 import test from 'ava'
-import createLink from '../../connection'
-import { createDatabase, dropDatabase, checkForExistence, listAll } from '../database'
-
-const getConnection = async () =>
-  createLink({
-    host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
-    port: '28015',
-    db: 'db_example',
-  })
+import { createDatabase, dropDatabase, checkForExistence, listAll, getConnection } from '../database'
 
 test('[database]: should create and drops a database properly', async t => {
   const conn = await getConnection()

@@ -1,16 +1,8 @@
 import test from 'ava'
-import createLink from '../../connection'
-import { createDatabase, dropDatabase } from '../database'
+import { createDatabase, dropDatabase, getConnection } from '../database'
 import { createTable } from '../table'
 import insertData from '../insert-data'
 import deleteData from '../delete-data'
-
-const getConnection = async () =>
-  createLink({
-    host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
-    port: '28015',
-    db: 'deletion_example',
-  })
 
 /* eslint-disable camelcase */
 test('[transactions]: should delete a value properly', async t => {
