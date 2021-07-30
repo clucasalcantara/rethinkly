@@ -1,17 +1,9 @@
 import test from 'ava'
-import createLink from '../../connection'
 import insertData from '../insert-data'
 import updateValues from '../update-values'
 
-import { createDatabase, dropDatabase } from '../database'
+import { createDatabase, dropDatabase, getConnection } from '../database'
 import { createTable } from '../table'
-
-const getConnection = async () =>
-  createLink({
-    host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
-    port: '28015',
-    db: 'update_example',
-  })
 
 test('[transactions]: should update a value properly', async t => {
   const conn = await getConnection()

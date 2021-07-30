@@ -1,22 +1,23 @@
 import logger from 'hoopa-logger'
 // Resources
 import createLink from '../connection'
-import { createDatabase } from './database'
+import { createDatabase, getConnection } from './database'
 import { createTable } from './table'
 
 /**
  * Seed a database structure
- * @param {SeedInfo} seedInfo - Config object for seed
  * @typedef {SeedInfo}
  * @property {object} connection { {string} host, {string} port  }
  * @property {string} database ex: 'seed_example'
  * @property {array} tables ex: ['table1'],
+ * @param dbConfig
  */
 export const seed = async dbConfig => {
-  const { database, tables, connection } = dbConfig
-  const conn = await createLink(connection)
+  const { database, tables } = dbConfig
+  const conn = await getConnection(database)
+  //const contextualConnection = await createLink({ ...connection, db: database })
 
-  if (!database || !conn || !tables) {
+  if (!database || !tables) {
     return logger.error(`Error seedling, malformed configuration scheme`)
   }
 
@@ -25,9 +26,8 @@ export const seed = async dbConfig => {
   try {
     await createDatabase(conn, database)
     logger.info(`${database} created successfully!`)
-    const contextualConnection = await createLink({ ...connection, db: database })
     tables.map(async table => {
-      await createTable(contextualConnection, table)
+      await createTable(conn, table)
       logger.info(`${table} created successfully!`)
     })
   } catch (error) {

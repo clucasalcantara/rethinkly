@@ -9,6 +9,7 @@ import rethinkdb from 'rethinkdb'
  * Grab data from database
  * @param {Object} connection
  * @param {String} tableName
+ * @param data
  * @returns {Array||Object} results || result
  */
 export default async (connection, tableName, data) =>
