@@ -34,7 +34,7 @@
     "ava": "3.15.0",
     "babel-node": "^0.0.1-security",
     "rethinkdb": "^2.3.3",
-    "set-value": "^3.0.1"
+    "set-value": "^4.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
