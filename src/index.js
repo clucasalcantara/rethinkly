@@ -1,3 +1,4 @@
+import rethinkdb from 'rethinkdb'
 import createLink from './connection'
 import { retrieveData, insertData, deleteData, updateData } from './transactions'
 import { createDatabase, dropDatabase, checkForExistence, listAll } from './transactions/database'
@@ -29,4 +30,6 @@ module.exports = {
   },
   // Connection
   createLink,
+  // RethinkDB library
+  r: rethinkdb,
 }
