@@ -8,25 +8,54 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _ava = _interopRequireDefault(require("ava"));
 
-var _connection = _interopRequireDefault(require("../../connection"));
-
 var _database = require("../database");
 
 var _table = require("../table");
 
-var getConnection = /*#__PURE__*/function () {
-  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee() {
+(0, _ava["default"])('should create and drop a table properly', /*#__PURE__*/function () {
+  var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(t) {
+    var conn, result, created;
     return _regenerator["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            return _context.abrupt("return", (0, _connection["default"])({
-              host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
-              port: '28015',
-              db: 'table_example'
-            }));
+            _context.next = 2;
+            return (0, _database.getConnection)();
 
-          case 1:
+          case 2:
+            conn = _context.sent;
+            _context.next = 5;
+            return (0, _database.createDatabase)(conn, 'table_example');
+
+          case 5:
+            result = _context.sent;
+
+            if (!result) {
+              _context.next = 17;
+              break;
+            }
+
+            _context.next = 9;
+            return (0, _table.createTable)(conn, 'table_example');
+
+          case 9:
+            created = _context.sent;
+
+            if (!created) {
+              _context.next = 17;
+              break;
+            }
+
+            t.pass('table succesfully created');
+            _context.next = 14;
+            return (0, _table.dropTable)(conn, 'table_example');
+
+          case 14:
+            t.pass('table succesfully dropped');
+            _context.next = 17;
+            return (0, _database.dropDatabase)(conn, 'table_example');
+
+          case 17:
           case "end":
             return _context.stop();
         }
@@ -34,70 +63,8 @@ var getConnection = /*#__PURE__*/function () {
     }, _callee);
   }));
 
-  return function getConnection() {
-    return _ref.apply(this, arguments);
-  };
-}();
-
-(0, _ava["default"])('should create and drop a table properly', /*#__PURE__*/function () {
-  var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(t) {
-    var conn, result, created;
-    return _regenerator["default"].wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.next = 2;
-            return getConnection();
-
-          case 2:
-            conn = _context2.sent;
-            _context2.t0 = _database.createDatabase;
-            _context2.next = 6;
-            return getConnection();
-
-          case 6:
-            _context2.t1 = _context2.sent;
-            _context2.next = 9;
-            return (0, _context2.t0)(_context2.t1, 'table_example');
-
-          case 9:
-            result = _context2.sent;
-
-            if (!result) {
-              _context2.next = 21;
-              break;
-            }
-
-            _context2.next = 13;
-            return (0, _table.createTable)(conn, 'table_example');
-
-          case 13:
-            created = _context2.sent;
-
-            if (!created) {
-              _context2.next = 21;
-              break;
-            }
-
-            t.pass('table succesfully created');
-            _context2.next = 18;
-            return (0, _table.dropTable)(conn, 'table_example');
-
-          case 18:
-            t.pass('table succesfully dropped');
-            _context2.next = 21;
-            return (0, _database.dropDatabase)(conn, 'table_example');
-
-          case 21:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-
   return function (_x) {
-    return _ref2.apply(this, arguments);
+    return _ref.apply(this, arguments);
   };
 }());
 //# sourceMappingURL=table.spec.js.map

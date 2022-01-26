@@ -8,18 +8,12 @@ var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/
 
 var _ava = _interopRequireDefault(require("ava"));
 
-var _connection = _interopRequireDefault(require("../../connection"));
-
 var _seed = require("../seed");
 
 var _database = require("../database");
 
 // Resources
 var seedInfo = {
-  connection: {
-    host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
-    port: '28015'
-  },
   database: 'seed_example',
   tables: ['table1', 'table2', 'table3']
 };
@@ -31,10 +25,7 @@ var seedInfo = {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return (0, _connection["default"])({
-              host: process.env.ENV === 'mock' ? '172.18.0.2' : 'localhost',
-              port: '28015'
-            });
+            return (0, _database.getConnection)(seedInfo.database);
 
           case 2:
             conn = _context.sent;
@@ -48,12 +39,18 @@ var seedInfo = {
           case 7:
             dbSown = _context.sent;
 
-            if (dbSown) {
-              (0, _database.dropDatabase)(conn, seedInfo.database);
-              t.pass("".concat(seedInfo.database, " sown successfully!"));
+            if (!dbSown) {
+              _context.next = 12;
+              break;
             }
 
-          case 9:
+            _context.next = 11;
+            return (0, _database.dropDatabase)(conn, seedInfo.database);
+
+          case 11:
+            t.pass("".concat(seedInfo.database, " sown successfully!"));
+
+          case 12:
           case "end":
             return _context.stop();
         }

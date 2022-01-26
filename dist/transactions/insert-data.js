@@ -23,6 +23,7 @@ var _rethinkdb = _interopRequireDefault(require("rethinkdb"));
  * Grab data from database
  * @param {Object} connection
  * @param {String} tableName
+ * @param data
  * @returns {Array||Object} results || result
  */
 var _default = /*#__PURE__*/function () {

@@ -7,6 +7,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _rethinkdb = _interopRequireDefault(require("rethinkdb"));
+
 var _connection = _interopRequireDefault(require("./connection"));
 
 var _transactions = require("./transactions");
@@ -44,6 +46,8 @@ module.exports = {
     drop: _table.dropTable
   },
   // Connection
-  createLink: _connection["default"]
+  createLink: _connection["default"],
+  // RethinkDB library
+  r: _rethinkdb["default"]
 };
 //# sourceMappingURL=index.js.map

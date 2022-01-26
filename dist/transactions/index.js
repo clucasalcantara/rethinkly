@@ -29,6 +29,12 @@ Object.defineProperty(exports, "updateData", {
     return _updateData["default"];
   }
 });
+Object.defineProperty(exports, "paginationData", {
+  enumerable: true,
+  get: function get() {
+    return _paginationData["default"];
+  }
+});
 
 var _retrieveData = _interopRequireDefault(require("./retrieve-data"));
 
@@ -37,4 +43,6 @@ var _insertData = _interopRequireDefault(require("./insert-data"));
 var _deleteData = _interopRequireDefault(require("./delete-data"));
 
 var _updateData = _interopRequireDefault(require("./update-data"));
+
+var _paginationData = _interopRequireDefault(require("./pagination-data"));
 //# sourceMappingURL=index.js.map
